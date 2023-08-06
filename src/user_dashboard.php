@@ -176,7 +176,8 @@ if (empty($_SESSION["authenticated"])) {
                                             $booking = mysqli_query($conn, "SELECT reservation.id as id, reservation.check_in, reservation.check_out, room_type.name as room_type, booking.status, booking.notes, reservation.created_at
                                             FROM reservation
                                             JOIN room_type ON room_type.type_id = reservation.room_id
-                                            JOIN booking ON booking.id = reservation.id");
+                                            JOIN booking ON booking.id = reservation.id
+                                            WHERE reservation.uid = '$_SESSION[uid]'");
 
                                             $i = 1;
                                             while ($book = mysqli_fetch_assoc($booking)) {

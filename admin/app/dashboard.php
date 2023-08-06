@@ -20,11 +20,11 @@ if (empty($_SESSION["isAdmin"])) {
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
 
@@ -74,9 +74,9 @@ if (empty($_SESSION["isAdmin"])) {
                         "pending" => 0
                     );
 
-                    foreach($query as $k => $v){
+                    foreach ($query as $k => $v) {
                         $result = mysqli_query($conn, $v);
-                    
+
                         $data[$k] = mysqli_fetch_row($result)[0];
                     }
 
@@ -145,73 +145,216 @@ if (empty($_SESSION["isAdmin"])) {
                         <!-- ./col -->
                     </div>
                     <!-- /.row -->
+
+                    <!-- Chart -->
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-12 connectedSortable">
+                            <!-- Custom tabs (Charts with tabs)-->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Sales
+                                    </h3>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="hotel-charts" style="position: relative; height: 300px;">
+                                    </div>
+
+                                </div><!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.container-fluid -->
+
+
+                    <!-- /.content -->
                 </div>
-                <!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
+                <!-- /.content-wrapper -->
 
-            <!-- /.content -->
+                <!-- Control Sidebar -->
+                <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                    <div class="p-3">
+                        <h5>Title</h5>
+                        <p>Sidebar content</p>
+                    </div>
+                </aside>
+                <!-- /.control-sidebar -->
+
+                <!-- Main Footer -->
+                <footer class="main-footer">
+                    <!-- To the right -->
+                    <div class="float-right d-none d-sm-inline">
+                        Anything you want
+                    </div>
+                    <!-- Default to the left -->
+                    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+                </footer>
         </div>
-        <!-- /.content-wrapper -->
+        <!-- ./wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
+        <!-- REQUIRED SCRIPTS -->
+        <?php include "src/scripts.php" ?>
 
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
-    </div>
-    <!-- ./wrapper -->
+        <!-- Page specific script -->
+        <script type="text/javascript">
+            // A point click event that uses the Renderer to draw a label next to the point
+            // On subsequent clicks, move the existing label instead of creating a new one.
+            Highcharts.addEvent(Highcharts.Point, 'click', function() {
+                if (this.series.options.className.indexOf('popup-on-click') !== -1) {
+                    const chart = this.series.chart;
+                    const date = Highcharts.dateFormat('%A, %b %e, %Y', this.x);
+                    const text = `<b>${date}</b><br/>${this.y} ${this.series.name}`;
 
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins/jszip/jszip.min.js"></script>
-    <script src="plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $('#room-type').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
+                    const anchorX = this.plotX + this.series.xAxis.pos;
+                    const anchorY = this.plotY + this.series.yAxis.pos;
+                    const align = anchorX < chart.chartWidth - 200 ? 'left' : 'right';
+                    const x = align === 'left' ? anchorX + 10 : anchorX - 10;
+                    const y = anchorY - 30;
+                    if (!chart.sticky) {
+                        chart.sticky = chart.renderer
+                            .label(text, x, y, 'callout', anchorX, anchorY)
+                            .attr({
+                                align,
+                                fill: 'rgba(0, 0, 0, 0.75)',
+                                padding: 10,
+                                zIndex: 7 // Above series, below tooltip
+                            })
+                            .css({
+                                color: 'white'
+                            })
+                            .on('click', function() {
+                                chart.sticky = chart.sticky.destroy();
+                            })
+                            .add();
+                    } else {
+                        chart.sticky
+                            .attr({
+                                align,
+                                text
+                            })
+                            .animate({
+                                anchorX,
+                                anchorY,
+                                x,
+                                y
+                            }, {
+                                duration: 250
+                            });
+                    }
+                }
             });
-        });
-    </script>
+
+
+            Highcharts.chart('hotel-charts', {
+
+                chart: {
+                    scrollablePlotArea: {
+                        minWidth: 700
+                    }
+                },
+
+                data: {
+                    csvURL: ([1, 2, 3, 4]),
+                    beforeParse: function(csv) {
+                        return csv.replace(/\n\n/g, '\n');
+                    }
+                },
+
+                title: {
+                    text: ''
+                },
+
+
+                xAxis: {
+                    tickInterval: 7 * 24 * 3600 * 1000, // one week
+                    tickWidth: 0,
+                    gridLineWidth: 1,
+                    labels: {
+                        align: 'left',
+                        x: 3,
+                        y: -3
+                    }
+                },
+
+                yAxis: [{ // left y axis
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        align: 'left',
+                        x: 3,
+                        y: 16,
+                        format: '{value:.,0f}'
+                    },
+                    showFirstLabel: false
+                }, { // right y axis
+                    linkedTo: 0,
+                    gridLineWidth: 0,
+                    opposite: true,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        align: 'right',
+                        x: -3,
+                        y: 16,
+                        format: '{value:.,0f}'
+                    },
+                    showFirstLabel: false
+                }],
+
+                legend: {
+                    align: 'left',
+                    verticalAlign: 'top',
+                    borderWidth: 0
+                },
+
+                tooltip: {
+                    shared: true,
+                    crosshairs: true
+                },
+
+                plotOptions: {
+                    series: {
+                        cursor: 'pointer',
+                        className: 'popup-on-click',
+                        marker: {
+                            lineWidth: 1
+                        }
+                    }
+                },
+
+                series: [{
+                    name: 'All sessions',
+                    lineWidth: 4,
+                    marker: {
+                        radius: 4
+                    }
+                }, {
+                    name: 'New users'
+                }]
+            });
+
+
+            $(function() {
+                $('#room-type').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
+            });
+        </script>
 </body>
 
 </html>

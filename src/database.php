@@ -4,7 +4,7 @@ $db = array(
     'hostname' => 'localhost',
     'username' => 'root',
     'password' => '',
-    'db_name' => 'griya_sarre',
+    'db_name' => 'griyasa_1',
 
 );
 

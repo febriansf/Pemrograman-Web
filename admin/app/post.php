@@ -21,11 +21,11 @@ if (empty($_SESSION["isAdmin"])) {
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
 
@@ -235,12 +235,12 @@ if (empty($_SESSION["isAdmin"])) {
                                 <input type="text" class="form-control" name="title" value="<?= $post['title'] ?>" placeholder="Name">
                             </div>
                             <div class="form-group">
-                                        <label class='text-secondary text-sm text-left w-100' id="selected-label">Option</label>
-                                        <select class="form-control" name="status">
-                                            <option value="yes" <?= $post['draft'] == 'yes' ? 'selected' : '' ?>>Draft</option>
-                                            <option value="no" <?= $post['draft'] == 'no' ? 'selected' : '' ?>>Post</option>
-                                        </select>
-                                    </div>
+                                <label class='text-secondary text-sm text-left w-100' id="selected-label">Option</label>
+                                <select class="form-control" name="status">
+                                    <option value="yes" <?= $post['draft'] == 'yes' ? 'selected' : '' ?>>Draft</option>
+                                    <option value="no" <?= $post['draft'] == 'no' ? 'selected' : '' ?>>Post</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label class='text-secondary text-sm text-left w-100' id="selected-label">Image</label>
                                 <input type="file" name="image" class="dropify" data-height="200" value="<?= $post['image']  ?>" data-default-file="<?= $img ?>">
@@ -267,30 +267,8 @@ if (empty($_SESSION["isAdmin"])) {
     }
     ?>
 
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins/jszip/jszip.min.js"></script>
-    <script src="plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
-    <script src="../../js/dropify.min.js"></script>
-
-    <!-- jQuery Form Plugin -->
-    <script src="plugins/jquery-form/jquery.form.min.js"></script>
+    <!-- REQUIRED SCRIPTS -->/
+    <?php include "src/scripts.php" ?>
 
     <!-- Page specific script -->
     <script type="text/javascript">
